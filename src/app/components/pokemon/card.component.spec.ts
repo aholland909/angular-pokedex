@@ -19,8 +19,8 @@ describe('Pokemon Card component test', () => {
   let fixture: ComponentFixture<PokemonCardComponent>;
   let de: DebugElement;
 
-  class MockPokemon {
-    get(name: string): Observable<PokemonType> {
+  const MockPokemon = {
+    get: (name: string) => {
       return of(transformedPokemon);
     }
   }
@@ -28,7 +28,7 @@ describe('Pokemon Card component test', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [{ provide: PokemonService, useClass: MockPokemon }],
+      providers: [{ provide: PokemonService, useValue: MockPokemon }],
     }).compileComponents();
   });
 
