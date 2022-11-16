@@ -341,3 +341,16 @@ export interface Type2 {
   name: string
   url: string
 }
+
+//Pokemon type from paged pokemon
+export interface PokemonList {
+  count: number;
+  next: string;
+  previous?: any;
+  results: PokemonListResult[];
+}
+
+export interface PokemonListResult {
+  name: string;
+  url: string;
+}

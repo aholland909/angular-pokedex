@@ -1,5 +1,15 @@
-.pokemon-card {
+.pokemon-card-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+  gap: 15px;
   background-color: #FFB300;
+  padding: 1rem;
+}
+
+.pokemon-card {
+  border-color: grey;
+  border-style: solid;
   height: 350px;
   width: 250px;
   padding: 0.5rem;
