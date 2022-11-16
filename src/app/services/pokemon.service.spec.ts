@@ -16,12 +16,14 @@ const mockPokemonResponse = {
   },
 };
 
-const transformedPokemon = {
-  name: 'bulbasaur',
-  height: 10,
-  weight: 15,
-  image: 'www.bulbasaur.image',
-};
+const transformedPokemon = [
+  {
+    name: 'bulbasaur',
+    height: 10,
+    weight: 15,
+    image: 'www.bulbasaur.image',
+  },
+];
 
 let httpTestingController: HttpTestingController;
 let service: PokemonService;

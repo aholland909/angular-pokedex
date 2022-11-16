@@ -12,17 +12,17 @@ export class PokemonCardComponent implements OnInit {
 
   constructor(private pokemonService: PokemonService){}
 
-  pokemon:PokemonType = {
+  pokemon:PokemonType[] = [{
     name: "",
     height: 0,
     weight: 0,
     image: ""
-  }
+  }]
 
   ngOnInit() {
-    this.pokemonService.get('bulbasaur').subscribe((data) => {
+    this.pokemonService.getAll().subscribe(data => {
       this.pokemon = data;
-      console.log(this.pokemon)
+      console.log(data)
     })
   }
 }

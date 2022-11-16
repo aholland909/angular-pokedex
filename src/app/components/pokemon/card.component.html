@@ -1,6 +1,10 @@
-<div class="pokemon-card">
-  <p class="pokemon-title">{{pokemon.name}}</p>
-  <img class="pokemon-image" src={{pokemon.image}}/>
-  <p id="height">Height: {{pokemon.height}}</p>
-  <P id="weight">Weight: {{pokemon.weight}}</P>
+<div class="pokemon-card-container">
+  <div *ngFor="let p of pokemon">
+    <div class="pokemon-card">
+      <p class="pokemon-title">{{ p.name }}</p>
+      <img class="pokemon-image" src="{{ p.image }}" />
+      <p id="height">Height: {{ p.height }}</p>
+      <P id="weight">Weight: {{ p.weight }}</P>
+    </div>
+  </div>
 </div>
