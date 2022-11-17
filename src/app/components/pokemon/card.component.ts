@@ -20,9 +20,12 @@ export class PokemonCardComponent implements OnInit {
   }]
 
   ngOnInit() {
+    this.getPagedPokemon()
+    this.pokemonService.getPageChangeEvent$.forEach(event => this.getPagedPokemon());
+  }
+  getPagedPokemon() {
     this.pokemonService.getAll().subscribe(data => {
       this.pokemon = data;
-      console.log(data)
     })
   }
 }
