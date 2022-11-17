@@ -1,0 +1,33 @@
+.pagination-container {
+  background-color: #FFB300;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 1rem;
+}
+
+.page-number {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.button-container > button {
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  height: 35px;
+  width: 80px;
+}
+
+/* button status colors */
+.active {
+  background-color: blueviolet;
+}
+
+.disabled {
+  background-color: grey;
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
