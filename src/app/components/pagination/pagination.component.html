@@ -1,0 +1,21 @@
+<div class="pagination-container">
+  <div class="button-container">
+    <button
+      (click)="pageChange(-1)"
+      [disabled]="previousPageURL === null ? true : false"
+      [class]="previousPageURL === null ? 'disabled' : 'active'"
+    >
+      < Previous
+    </button>
+  </div>
+  <div class="page-number">{{ page }}</div>
+  <div class="button-container">
+    <button
+      (click)="pageChange(+1)"
+      [disabled]="nextPageURL === null ? true : false"
+      [class]="nextPageURL === null ? 'disabled' : 'active'"
+    >
+      Next >
+    </button>
+  </div>
+</div>

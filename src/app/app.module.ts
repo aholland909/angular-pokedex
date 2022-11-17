@@ -4,9 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonCardComponent } from './components/pokemon/card.component';
+import { PokemonPaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
-  declarations: [AppComponent, PokemonCardComponent],
+  declarations: [AppComponent, PokemonCardComponent, PokemonPaginationComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
