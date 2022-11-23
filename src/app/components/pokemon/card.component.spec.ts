@@ -21,58 +21,52 @@ describe('Pokemon Card component test', () => {
   let component: PokemonCardComponent;
   let fixture: ComponentFixture<PokemonCardComponent>;
   let de: DebugElement;
-  let mockPageSubject: Subject<number>;
-
-  const MockPokemon = {
-    getAll: () => {
+  let mockPageSubject = new Subject<number>();
+  
+  class MockPokemon {
+    getAll() {
       return of(transformedPokemon);
-    },
-    getPageChangeEvent: () => {
-      return mockPageSubject;
-    },
-  };
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserModule, CommonModule],
-      providers: [{ provide: PokemonService, useValue: MockPokemon }],
-    }).compileComponents();
-  });
+    };
+    get getPageChangeEvent$() {
+      return mockPageSubject.asObservable()
+    }
+  }
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [PokemonCardComponent],
+      imports: [HttpClientTestingModule, BrowserModule, CommonModule],
+      providers: [{ provide: PokemonService, useClass: MockPokemon }],
+    }).compileComponents();
+    
     fixture = TestBed.createComponent(PokemonCardComponent);
     component = fixture.componentInstance;
-
-    //setup new subjects
-    mockPageSubject = new Subject();
-
+    TestBed.inject(PokemonService);
     fixture.detectChanges();
+    
   });
 
   it('Should create a component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should show Pokemon Data', (done:DoneFn) => {
-    // const img = fixture.debugElement.nativeElement.querySelector('img');
-    // expect(img).not.toBe(null);
-
+  it('Should show Pokemon Data', (done: DoneFn) => {
     fixture.whenStable().then(() => {
-
       fixture.detectChanges();
-
-      console.log(fixture.debugElement.nativeElement);
 
       const title = fixture.debugElement.nativeElement.querySelector('.pokemon-title');
       expect(title.textContent).toEqual('bulbasaur');
+
+      const img = fixture.debugElement.nativeElement.querySelector('img');
+      expect(img).not.toBe(null);
+
+      const height = fixture.debugElement.nativeElement.querySelector('#height');
+      expect(height.textContent).toContain(10);
+
+      const weight = fixture.debugElement.nativeElement.querySelector('#weight');
+      expect(weight.textContent).toContain(15);
+
       done();
     });
-
-
-    // const height = fixture.debugElement.nativeElement.querySelector('#height');
-    // expect(height.textContent).toContain(10);
-
-    // const weight = fixture.debugElement.nativeElement.querySelector('#weight');
-    // expect(weight.textContent).toContain(15);
   });
 });
