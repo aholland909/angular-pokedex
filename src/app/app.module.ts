@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { PokemonCardComponent } from './components/pokemon/card.component';
 import { PokemonPaginationComponent } from './components/pagination/pagination.component';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, PokemonCardComponent, PokemonPaginationComponent],
+  declarations: [AppComponent, PokemonCardComponent, PokemonPaginationComponent, NavbarComponent],
   imports: [CommonModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
