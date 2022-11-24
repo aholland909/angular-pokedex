@@ -10,7 +10,10 @@
     "test:ci": "ng test --watch=false --browsers ChromeHeadless",
     "lint": "ng lint && npx stylelint '**/*.css'",
     "format": "npx prettier --write .",
-    "commit": "cz"
+    "commit": "cz",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
@@ -36,9 +39,11 @@
     "@angular/cli": "~14.2.8",
     "@angular/compiler-cli": "^14.2.0",
     "@commitlint/cli": "^17.2.0",
+    "@cypress/schematic": "^2.3.0",
     "@types/jasmine": "~4.0.0",
     "@typescript-eslint/eslint-plugin": "5.37.0",
     "@typescript-eslint/parser": "5.37.0",
+    "cypress": "^11.2.0",
     "eslint": "^8.23.1",
     "husky": "^8.0.1",
     "jasmine-core": "~4.3.0",
