@@ -4,7 +4,8 @@
       <p class="pokemon-title">{{ p.name }}</p>
       <img class="pokemon-image" src="{{ p.image }}" />
       <p id="height">Height: {{ p.height }}</p>
-      <P id="weight">Weight: {{ p.weight }}</P>
+      <p id="weight">Weight: {{ p.weight }}</p>
+      <button class="pokemon-button" routerLink="{{ '/pokemon/' + p.name }}"> Learn more</button>
     </div>
   </div>
 </div>

@@ -10,7 +10,6 @@
 .pokemon-card {
   border-color: grey;
   border-style: solid;
-  height: 350px;
   width: 250px;
   padding: 0.5rem;
   display: flex;
@@ -30,4 +29,10 @@
   height: auto;
   width: 80%;
   align-self: center;
+}
+
+.pokemon-button {
+  background: none;
+  border-style: inherit;
+  cursor: pointer;
 }

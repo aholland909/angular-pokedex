@@ -1,0 +1,29 @@
+.pokemon-info-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFB300;
+  height: 100%;
+}
+
+.pokemon-info-container > h1::first-letter {
+  text-transform: capitalize;
+}
+
+.pokemon-info {
+  border-color: grey;
+  border-style: solid;
+  padding: 1rem;
+}
+
+.pokemon-details {
+  color: black
+}
+
+.pokemon-details > table > tr{
+  vertical-align: text-top;
+}
+
+.table-text::first-letter {
+  text-transform: capitalize;
+}

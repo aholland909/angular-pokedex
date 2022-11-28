@@ -7,6 +7,7 @@ import { PokemonType } from 'src/types/pokemon';
 import { PokemonCardComponent } from './card.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { CommonModule } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const transformedPokemon = [
   {
@@ -14,6 +15,8 @@ const transformedPokemon = [
     height: 10,
     weight: 15,
     image: 'www.bulbasaur.image',
+    stats: [],
+    types: [],
   },
 ];
 
@@ -35,7 +38,7 @@ describe('Pokemon Card component test', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PokemonCardComponent],
-      imports: [HttpClientTestingModule, BrowserModule, CommonModule],
+      imports: [HttpClientTestingModule, BrowserModule, CommonModule, RouterTestingModule],
       providers: [{ provide: PokemonService, useClass: MockPokemon }],
     }).compileComponents();
     

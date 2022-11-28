@@ -3,6 +3,8 @@ export interface PokemonType {
   weight: number;
   name: string;
   image: string;
+  stats: Stat[]
+  types: Type[]
 }
 
 export interface PokemonDataType {

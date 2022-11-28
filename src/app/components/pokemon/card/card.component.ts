@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonService } from '../../services/pokemon.service';
+import { PokemonService } from '../../../services/pokemon.service';
 import { PokemonDataType, PokemonType } from 'src/types/pokemon';
 
 @Component({
@@ -16,7 +16,9 @@ export class PokemonCardComponent implements OnInit {
     name: "",
     height: 0,
     weight: 0,
-    image: ""
+    image: "",
+    stats: [],
+    types: [],
   }]
 
   ngOnInit() {

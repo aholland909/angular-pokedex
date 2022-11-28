@@ -11,6 +11,8 @@ const pokemonTransformer = (pokemon: PokemonDataType[]) => {
       height: p.height,
       weight: p.weight,
       image: p.sprites.other['official-artwork'].front_default,
+      stats: p.stats,
+      types: p.types
     };
   });
 };
@@ -86,6 +88,6 @@ export class PokemonService {
 
   private handleError(error: HttpErrorResponse) {
     console.error(error.message);
-    return throwError(() => 'A data error occurred, please try again.');
+    return throwError(() => 'A data error occurred, cannot get pokemon');
   }
 }

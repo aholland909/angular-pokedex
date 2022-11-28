@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { PokemonService } from './pokemon.service';
+import { RouterTestingModule } from "@angular/router/testing";
 
 const mockPokemonResponse = {
   name: 'bulbasaur',
@@ -14,6 +15,8 @@ const mockPokemonResponse = {
       },
     },
   },
+  stats: [],
+  types: [],
 };
 
 const transformedPokemon = [
@@ -22,6 +25,8 @@ const transformedPokemon = [
     height: 10,
     weight: 15,
     image: 'www.bulbasaur.image',
+    stats: [],
+    types: [],
   },
 ];
 
@@ -33,7 +38,7 @@ describe('PokemonService Test', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [PokemonService],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule],
     });
     httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(PokemonService);
