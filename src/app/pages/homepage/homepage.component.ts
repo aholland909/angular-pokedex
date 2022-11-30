@@ -4,12 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-    console.log("homepage")
-  }
 
 }

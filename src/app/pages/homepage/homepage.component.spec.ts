@@ -20,4 +20,11 @@ describe('HomepageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should have cards and pagination', () => {
+    const cards = fixture.debugElement.nativeElement.querySelector('app-pokemon-card')
+    expect(cards).toBeTruthy()
+
+    const pagination = fixture.debugElement.nativeElement.querySelector('app-pokemon-pagination')
+    expect(pagination).toBeTruthy()
+  });
 });

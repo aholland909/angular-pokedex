@@ -69,6 +69,11 @@ describe('Pokemon Card component test', () => {
       const weight = fixture.debugElement.nativeElement.querySelector('#weight');
       expect(weight.textContent).toContain(15);
 
+      const button = fixture.debugElement.nativeElement.querySelector('.pokemon-button')
+      const buttonLinkText = button.getAttribute('ng-reflect-router-link')
+
+      expect(buttonLinkText).toEqual('/pokemon/bulbasaur')
+
       done();
     });
   });
