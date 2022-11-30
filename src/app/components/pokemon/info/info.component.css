@@ -27,3 +27,8 @@
 .table-text::first-letter {
   text-transform: capitalize;
 }
+
+.table-row {
+  display: flex;
+  flex-direction: row;
+}
