@@ -6,6 +6,13 @@
     "angular-pokemon-app": {
       "projectType": "application",
       "schematics": {},
+      "i18n": {
+        "sourceLocale": "en-GB",
+        "locales": {
+          "fr-FR": "src/locale/messages.fr.xlf",
+          "de-DE": "src/locale/messages.de.xlf"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,6 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": ["fr-FR", "de-DE"],
             "outputPath": "dist/angular-pokemon-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -49,7 +57,17 @@
               ],
               "outputHashing": "all"
             },
+            "en": {
+              "localize": ["en-GB"]
+            },
+            "fr": {
+              "localize": ["fr-FR"]
+            },
+            "de": {
+              "localize": ["de-DE"]
+            },
             "development": {
+              "localize": ["en-GB"],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -68,6 +86,15 @@
             },
             "development": {
               "browserTarget": "angular-pokemon-app:build:development"
+            },
+            "en": {
+              "browserTarget": "angular-pokemon-app:build:en"
+            },
+            "fr": {
+              "browserTarget": "angular-pokemon-app:build:fr"
+            },
+            "de": {
+              "browserTarget": "angular-pokemon-app:build:fr"
             }
           },
           "defaultConfiguration": "development"

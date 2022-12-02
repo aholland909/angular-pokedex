@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1927985370269423221" datatype="html">
+        <source>Height: <x id="INTERPOLATION" equiv-text="{{ p.height }}"/></source>
+        <target>Höhe:<x id="INTERPOLATION" equiv-text="{{ p.height }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pokemon/card/card.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1057197217265883334" datatype="html">
+        <source>Weight: <x id="INTERPOLATION" equiv-text="{{ p.weight }}"/></source>
+        <target>Gewicht: <x id="INTERPOLATION" equiv-text="{{ p.weight }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pokemon/card/card.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="819996403327805209" datatype="html">
+        <source>Learn more</source>
+        <target>Lern mehr</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pokemon/card/card.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3538960099856845134" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Height:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ pokemon.height }}"/></source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Höhe:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ pokemon.height }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pokemon/info/info.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5774116752268457951" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Weight:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ pokemon.weight }}"/></source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Gewicht:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ pokemon.weight }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pokemon/info/info.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1912431166694375748" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Stats<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Statistiken<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pokemon/info/info.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8455103991627906678" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Types<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Typen<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pokemon/info/info.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

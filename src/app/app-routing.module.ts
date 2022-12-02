@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'pokemon/:name', component: InfoComponent},
   { path: '404', component: NotFoundComponent },
-  { path: '**', component: NotFoundComponent }
+  // { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

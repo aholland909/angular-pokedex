@@ -14,7 +14,8 @@
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:ci": "start-test start 4200 cypress:run"
+    "cypress:ci": "start-test start 4200 cypress:run",
+    "i18n:extract": "ng extract-i18n --output-path src/locale"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,7 @@
     "@angular-eslint/template-parser": "14.1.2",
     "@angular/cli": "~14.2.8",
     "@angular/compiler-cli": "^14.2.0",
+    "@angular/localize": "^14.2.8",
     "@commitlint/cli": "^17.2.0",
     "@cypress/schematic": "^2.3.0",
     "@types/jasmine": "~4.0.0",

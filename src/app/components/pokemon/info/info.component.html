@@ -5,18 +5,18 @@
       <img class="pokemon-image" src="{{ pokemon.image }}" />
     </div>
     <div class="pokemon-details">
-      <p id="height"><strong>Height:</strong>{{ pokemon.height }}</p>
-      <p id="weight"><strong>Weight:</strong>{{ pokemon.weight }}</p>
+      <p id="height" i18n><strong>Height:</strong>{{ pokemon.height }}</p>
+      <p id="weight" i18n><strong>Weight:</strong>{{ pokemon.weight }}</p>
       <table>
         <tr>
-          <td><strong>Stats</strong></td>
+          <td i18n><strong>Stats</strong></td>
           <div *ngFor="let stat of pokemon.stats" class="table-row">
             <p class="table-text">{{ stat.stat.name + ":"}}</p>
             <p>{{ stat.base_stat}}</p>
           </div>
         </tr>
         <tr>
-          <td><strong>Types</strong></td>
+          <td i18n><strong>Types</strong></td>
           <td>
             <div *ngFor="let type of pokemon.types" class="table-row">
               <p class="table-text">{{ type.type.name }}</p>
