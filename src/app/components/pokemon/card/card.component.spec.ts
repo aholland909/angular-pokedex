@@ -8,6 +8,9 @@ import { PokemonCardComponent } from './card.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../../../app.module';
+import { HttpClient } from '@angular/common/http';
 
 const transformedPokemon = [
   {
@@ -25,28 +28,39 @@ describe('Pokemon Card component test', () => {
   let fixture: ComponentFixture<PokemonCardComponent>;
   let de: DebugElement;
   let mockPageSubject = new Subject<number>();
-  
+
   class MockPokemon {
     getAll() {
       return of(transformedPokemon);
-    };
+    }
     get getPageChangeEvent$() {
-      return mockPageSubject.asObservable()
+      return mockPageSubject.asObservable();
     }
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PokemonCardComponent],
-      imports: [HttpClientTestingModule, BrowserModule, CommonModule, RouterTestingModule],
-      providers: [{ provide: PokemonService, useClass: MockPokemon }],
+      imports: [
+        HttpClientTestingModule,
+        BrowserModule,
+        CommonModule,
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
+      ],
+      providers: [{ provide: PokemonService, useClass: MockPokemon }, TranslateService],
     }).compileComponents();
-    
+
     fixture = TestBed.createComponent(PokemonCardComponent);
     component = fixture.componentInstance;
     TestBed.inject(PokemonService);
     fixture.detectChanges();
-    
   });
 
   it('Should create a component', () => {
@@ -69,10 +83,10 @@ describe('Pokemon Card component test', () => {
       const weight = fixture.debugElement.nativeElement.querySelector('#weight');
       expect(weight.textContent).toContain(15);
 
-      const button = fixture.debugElement.nativeElement.querySelector('.pokemon-button')
-      const buttonLinkText = button.getAttribute('ng-reflect-router-link')
+      const button = fixture.debugElement.nativeElement.querySelector('.pokemon-button');
+      const buttonLinkText = button.getAttribute('ng-reflect-router-link');
 
-      expect(buttonLinkText).toEqual('/pokemon/bulbasaur')
+      expect(buttonLinkText).toEqual('/pokemon/bulbasaur');
 
       done();
     });

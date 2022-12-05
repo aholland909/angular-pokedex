@@ -1,0 +1,17 @@
+{
+  "pokemon": {
+    "height": "Hauteur",
+    "weight": "Polds",
+    "button": "Apprendre encore plus",
+    "stats": "Statistiques",
+    "types": "Les types"
+  },
+  "navbar": {
+    "home": "DOMICILE",
+    "quiz": "QUESTIONNAIRE"
+  },
+  "pagination": {
+    "next": "Suivant",
+    "previous": "Précédent"
+  }
+}

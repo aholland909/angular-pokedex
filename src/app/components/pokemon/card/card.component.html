@@ -3,9 +3,9 @@
     <div class="pokemon-card">
       <p class="pokemon-title">{{ p.name }}</p>
       <img class="pokemon-image" src="{{ p.image }}" />
-      <p i18n id="height">Height: {{ p.height }}</p>
-      <p i18n id="weight">Weight: {{ p.weight }}</p>
-      <button class="pokemon-button" routerLink="{{ '/pokemon/' + p.name }}" i18n>Learn more</button>
+      <p id="height">{{'pokemon.height' | translate}}: {{ p.height }}</p>
+      <p id="weight">{{'pokemon.weight' | translate}}: {{ p.weight }}</p>
+      <button class="pokemon-button" routerLink="{{ '/pokemon/' + p.name }}">{{'pokemon.button' | translate}}</button>
     </div>
   </div>
 </div>

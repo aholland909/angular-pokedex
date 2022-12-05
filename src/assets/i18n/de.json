@@ -1,0 +1,17 @@
+{
+  "pokemon": {
+    "height": "Höhe",
+    "weight": "Gewicht",
+    "button": "Lern mehr",
+    "stats": "Statistiken",
+    "types": "Typen"
+  },
+  "navbar": {
+    "home": "HEIM",
+    "quiz": "QUIZ"
+  },
+  "pagination": {
+    "next": "Nächste",
+    "previous": "Vorherige"
+  }
+}

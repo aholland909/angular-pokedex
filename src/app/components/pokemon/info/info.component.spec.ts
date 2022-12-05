@@ -3,10 +3,13 @@ import { DebugElement } from '@angular/core';
 import { InfoComponent } from './info.component';
 import { of } from 'rxjs';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../../../app.module';
+import { HttpClient } from '@angular/common/http';
 
 const transformedPokemon = [
   {
@@ -57,8 +60,20 @@ describe('Pokemon Info page', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [InfoComponent],
-      imports: [HttpClientTestingModule, BrowserModule, CommonModule, RouterTestingModule],
-      providers: [{ provide: PokemonService, useClass: MockPokemonService }],
+      imports: [
+        HttpClientTestingModule,
+        BrowserModule,
+        CommonModule,
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
+      ],
+      providers: [{ provide: PokemonService, useClass: MockPokemonService }, TranslateService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(InfoComponent);
@@ -87,13 +102,13 @@ describe('Pokemon Info page', () => {
       expect(weight.textContent).toContain('15');
 
       // check pokemon stats and types displayed in table
-      const pokemonData = fixture.debugElement.nativeElement.querySelectorAll('.table-row')
-      expect(pokemonData[0].innerHTML).toContain('hp')
-      expect(pokemonData[0].innerHTML).toContain('45')
+      const pokemonData = fixture.debugElement.nativeElement.querySelectorAll('.table-row');
+      expect(pokemonData[0].innerHTML).toContain('hp');
+      expect(pokemonData[0].innerHTML).toContain('45');
 
-      expect(pokemonData[1].innerHTML).toContain('attack')
-      expect(pokemonData[1].innerHTML).toContain('49')
-      expect(pokemonData[2].innerHTML).toContain('grass')
+      expect(pokemonData[1].innerHTML).toContain('attack');
+      expect(pokemonData[1].innerHTML).toContain('49');
+      expect(pokemonData[2].innerHTML).toContain('grass');
       done();
     });
   });

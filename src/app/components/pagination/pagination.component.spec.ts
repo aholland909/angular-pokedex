@@ -7,6 +7,9 @@ import { PokemonType } from 'src/types/pokemon';
 import { PokemonPaginationComponent } from './pagination.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { CommonModule } from '@angular/common';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../../app.module';
+import { HttpClient } from '@angular/common/http';
 
 const transformedPokemon = [
   {
@@ -47,8 +50,19 @@ describe('Pokemon Card component test', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PokemonPaginationComponent],
-      imports: [HttpClientTestingModule, BrowserModule, CommonModule],
-      providers: [{ provide: PokemonService, useClass: MockPokemon }],
+      imports: [
+        HttpClientTestingModule,
+        BrowserModule,
+        CommonModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
+      ],
+      providers: [{ provide: PokemonService, useClass: MockPokemon }, TranslateService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PokemonPaginationComponent);

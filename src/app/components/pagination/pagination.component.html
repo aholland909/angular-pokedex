@@ -5,7 +5,7 @@
       [disabled]="previousPageURL === null ? true : false"
       [class]="previousPageURL === null ? 'disabled' : 'active'"
     >
-      < Previous
+      {{ 'pagination.previous' | translate }}
     </button>
   </div>
   <div class="page-number">{{ page }}</div>
@@ -15,7 +15,7 @@
       [disabled]="nextPageURL === null ? true : false"
       [class]="nextPageURL === null ? 'disabled' : 'active'"
     >
-      Next >
+      {{ 'pagination.next' | translate }}
     </button>
   </div>
 </div>
