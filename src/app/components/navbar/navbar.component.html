@@ -6,33 +6,27 @@
   </div>
   <div class="nav-bar-links">
     <div>
-      <a class="links" routerLink="/">{{'navbar.home' | translate}}</a>
-      <a class="links" routerLink="/">{{'navbar.quiz' | translate}}</a>
+      <a class="links" routerLink="/">{{ 'navbar.home' | translate }}</a>
+      <a class="links" routerLink="/">{{ 'navbar.quiz' | translate }}</a>
     </div>
-    <div>
-      <div>
-        <div (click)="setLang('en')" href="/en-GB">
-          <img
-            class="flags"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/1920px-Flag_of_the_United_Kingdom_%283-5%29.svg.png"
-          />
+    <div class="nav-bar-flags">
+      <div (click)="setLang('en')" id="enFlag">
+        <img
+          class="flags"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/1920px-Flag_of_the_United_Kingdom_%283-5%29.svg.png"
+        />
       </div>
+      <div (click)="setLang('de')">
+        <img
+          class="flags"
+          src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1920px-Flag_of_Germany.svg.png"
+        />
       </div>
-      <div>
-        <div (click)="setLang('de')" href="/de-DE">
-          <img
-            class="flags"
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1920px-Flag_of_Germany.svg.png"
-          />
-      </div>
-      </div>
-      <div>
-        <div (click)="setLang('fr')" href="/fr-FR">
-          <img
-            class="flags"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg/1920px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg.png"
-          />
-      </div>
+      <div (click)="setLang('fr')">
+        <img
+          class="flags"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg/1920px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg.png"
+        />
       </div>
     </div>
   </div>
