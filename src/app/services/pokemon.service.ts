@@ -12,7 +12,7 @@ const pokemonTransformer = (pokemon: PokemonDataType[]) => {
       weight: p.weight,
       image: p.sprites.other['official-artwork'].front_default,
       stats: p.stats,
-      types: p.types
+      types: p.types,
     };
   });
 };
@@ -45,7 +45,7 @@ export class PokemonService {
       .pipe(
         mergeMap((pokemon: PokemonList) => {
           this.nextPageURLSubject.next(pokemon.next);
-          this.previousPageURLSubject.next(pokemon.previous)
+          this.previousPageURLSubject.next(pokemon.previous);
 
           const pokemonData = Promise.all(
             pokemon.results.map((pokemonLink: PokemonListResult) => {
@@ -68,6 +68,21 @@ export class PokemonService {
     return pokemonList;
   }
 
+  getRandomPokemon(randomIndex: string) {
+    const pokemonURL = `https://pokeapi.co/api/v2/pokemon/?offset=${randomIndex}&limit=1`;
+    return this.http.get<any>(pokemonURL).pipe(
+      mergeMap((pokemon: PokemonList) => {
+         return this.http.get(pokemon.results[0].url).pipe(
+          map((pokemon: any) => {
+            return pokemonTransformer([pokemon]);
+          }),
+          catchError(this.handleError),
+        );
+      }),
+      catchError(this.handleError),
+    );
+  }
+
   pageChange(newPageNumber: number) {
     this.page += newPageNumber;
     this.pageSubject.next(this.page);
@@ -78,11 +93,11 @@ export class PokemonService {
     return this.pageSubject.asObservable();
   }
 
-  get nextPageURLEvent$(){
+  get nextPageURLEvent$() {
     return this.nextPageURLSubject.asObservable();
   }
 
-  get previousPageURLEvent$(){
+  get previousPageURLEvent$() {
     return this.previousPageURLSubject.asObservable();
   }
 
