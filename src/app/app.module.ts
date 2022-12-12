@@ -12,6 +12,9 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SearchComponent } from './components/search/search.component';
+import { SearchFilterPipe } from './components/search/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -27,12 +30,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     InfoComponent,
     HomepageComponent,
     NotFoundComponent,
+    SearchComponent,
+    SearchFilterPipe
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

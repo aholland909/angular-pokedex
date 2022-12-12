@@ -26,7 +26,7 @@ export class PokemonCardComponent implements OnInit {
     this.pokemonService.getPageChangeEvent$.subscribe(event => this.getPagedPokemon());
   }
   getPagedPokemon() {
-    this.pokemonService.getAll().subscribe(data => {
+    this.pokemonService.getPagedPokemon().subscribe(data => {
       this.pokemon = data;
       // console.log(this.pokemon)
     })

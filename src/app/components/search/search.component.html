@@ -1,0 +1,18 @@
+<div class="search-form" >
+  <input
+    class="search-box"
+    aria-describedby="search-text"
+    [(ngModel)]="searchText"
+    placeholder="Enter text to search pokemon"
+    autofocus
+    (focus)="focusInput(true)"
+    (focusout)="focusInput(false)"
+  />
+  <div class="search-result-group" *ngIf="focus" >
+    <ul >
+      <li class="search-result-item" *ngFor="let p of allPokemon | appFilter: searchText" routerLink="{{'/pokemon/' + p.name}}" >
+        <p class="seach-text" (click)="gotoPokemon(p.name)">{{ p.name }}</p>
+      </li>
+    </ul>
+  </div>
+</div>

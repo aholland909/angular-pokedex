@@ -1,0 +1,22 @@
+.search-box {
+  width: 250px;
+}
+
+.search-result-group{
+  margin: 0px;
+  position: absolute;
+  background: white;
+
+}
+
+.search-result-group > ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+}
+
+.search-result-item {
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}

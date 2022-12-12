@@ -30,7 +30,7 @@ describe('Pokemon Card component test', () => {
   let mockPageNumber = 1;
 
   class MockPokemon {
-    getAll() {
+    getPagedPokemon() {
       return of(transformedPokemon);
     }
     get getPageChangeEvent$() {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { map, catchError, mergeMap } from 'rxjs/operators';
-import { Subject, throwError } from 'rxjs';
+import { map, catchError, mergeMap, toArray, concatMap } from 'rxjs/operators';
+import { combineLatest, forkJoin, from, merge, Subject, throwError, zip } from 'rxjs';
 import { PokemonType, PokemonDataType, PokemonList, PokemonListResult } from 'src/types/pokemon';
 
 const pokemonTransformer = (pokemon: PokemonDataType[]) => {
@@ -12,7 +12,7 @@ const pokemonTransformer = (pokemon: PokemonDataType[]) => {
       weight: p.weight,
       image: p.sprites.other['official-artwork'].front_default,
       stats: p.stats,
-      types: p.types
+      types: p.types,
     };
   });
 };
@@ -38,14 +38,14 @@ export class PokemonService {
     );
   }
 
-  getAll() {
+  getPagedPokemon() {
     const offset: number = (this.page - 1) * this.perPage;
     const pokemonList = this.http
       .get<PokemonList>(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${this.perPage}`)
       .pipe(
         mergeMap((pokemon: PokemonList) => {
           this.nextPageURLSubject.next(pokemon.next);
-          this.previousPageURLSubject.next(pokemon.previous)
+          this.previousPageURLSubject.next(pokemon.previous);
 
           const pokemonData = Promise.all(
             pokemon.results.map((pokemonLink: PokemonListResult) => {
@@ -68,6 +68,18 @@ export class PokemonService {
     return pokemonList;
   }
 
+  getPokemonList() {
+    return this.http
+      .get<PokemonList>(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=12`)
+      .pipe(map((pokemonList) => pokemonList.results));
+  }
+
+  getAllPokemon() {
+    return this.getPokemonList().pipe(
+      mergeMap((pokemonList) => forkJoin(pokemonList.map((pokemon) => this.get(pokemon.name)))),
+    );
+  }
+
   pageChange(newPageNumber: number) {
     this.page += newPageNumber;
     this.pageSubject.next(this.page);
@@ -78,11 +90,11 @@ export class PokemonService {
     return this.pageSubject.asObservable();
   }
 
-  get nextPageURLEvent$(){
+  get nextPageURLEvent$() {
     return this.nextPageURLSubject.asObservable();
   }
 
-  get previousPageURLEvent$(){
+  get previousPageURLEvent$() {
     return this.previousPageURLSubject.asObservable();
   }
 
