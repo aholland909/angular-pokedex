@@ -8,14 +8,12 @@ import { PokemonPaginationComponent } from './pagination.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { CommonModule } from '@angular/common';
 
-const transformedPokemon = [
-  {
-    name: 'bulbasaur',
-    height: 10,
-    weight: 15,
-    image: 'www.bulbasaur.image',
-  },
-];
+const transformedPokemon = {
+  name: 'bulbasaur',
+  height: 10,
+  weight: 15,
+  image: 'www.bulbasaur.image',
+};
 
 describe('Pokemon Card component test', () => {
   let component: PokemonPaginationComponent;

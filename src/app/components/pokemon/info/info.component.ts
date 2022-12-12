@@ -28,7 +28,7 @@ export class InfoComponent implements OnInit {
 
   getPokemonData(name: string) {
     this.pokemonService.get(name).subscribe({
-      next: (data) => (this.pokemon = data[0]),
+      next: (data) => (this.pokemon = data),
       error: (e) => this.router.navigateByUrl('/404'),
     });
   }

@@ -2,7 +2,7 @@
   <div *ngFor="let p of pokemon">
     <div class="pokemon-card">
       <p class="pokemon-title">{{ p.name }}</p>
-      <img class="pokemon-image" src="{{ p.image }}" />
+      <img class="pokemon-image" src="{{ p.image }}" alt="{{p.name + ' image'}}" />
       <p id="height">Height: {{ p.height }}</p>
       <p id="weight">Weight: {{ p.weight }}</p>
       <button class="pokemon-button" routerLink="{{ '/pokemon/' + p.name }}"> Learn more</button>
