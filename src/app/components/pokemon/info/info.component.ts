@@ -11,6 +11,7 @@ import { PokemonType } from 'src/types/pokemon';
 export class InfoComponent implements OnInit {
   name: string = '';
   pokemon: PokemonType = {
+    id: 1,
     name: '',
     height: 0,
     weight: 0,

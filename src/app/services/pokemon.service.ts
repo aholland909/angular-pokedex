@@ -6,6 +6,7 @@ import { PokemonType, PokemonDataType, PokemonList, PokemonListResult } from 'sr
 
 const pokemonTransformer = (pokemon: PokemonDataType) => {
   return {
+    id: pokemon.id,
     name: pokemon.name,
     height: pokemon.height,
     weight: pokemon.weight,

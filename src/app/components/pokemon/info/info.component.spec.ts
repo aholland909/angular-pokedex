@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 
 const transformedPokemon = {
+  id: 1,
   name: 'bulbasaur',
   height: 10,
   weight: 15,

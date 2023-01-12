@@ -9,6 +9,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 import { CommonModule } from '@angular/common';
 
 const transformedPokemon = {
+  id: 1,
   name: 'bulbasaur',
   height: 10,
   weight: 15,

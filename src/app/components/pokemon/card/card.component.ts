@@ -13,6 +13,7 @@ export class PokemonCardComponent implements OnInit {
   constructor(private pokemonService: PokemonService){}
 
   pokemon:PokemonType[] = [{
+    id: 1,
     name: "",
     height: 0,
     weight: 0,

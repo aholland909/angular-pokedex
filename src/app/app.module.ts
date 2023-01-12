@@ -10,10 +10,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { InfoComponent } from './components/pokemon/info/info.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NgOptimizedImage } from '@angular/common'
 
 @NgModule({
   declarations: [AppComponent, PokemonCardComponent, PokemonPaginationComponent, NavbarComponent, InfoComponent, HomepageComponent, NotFoundComponent],
-  imports: [CommonModule, BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [CommonModule, BrowserModule, AppRoutingModule, HttpClientModule, NgOptimizedImage],
   providers: [],
   bootstrap: [AppComponent],
 })

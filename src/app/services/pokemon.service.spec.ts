@@ -5,6 +5,7 @@ import { PokemonService } from './pokemon.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 const mockPokemonResponse = {
+  id: 1,
   name: 'bulbasaur',
   height: 10,
   weight: 15,
@@ -20,6 +21,7 @@ const mockPokemonResponse = {
 };
 
 const transformedPokemon = {
+  id: 1,
   name: 'bulbasaur',
   height: 10,
   weight: 15,
