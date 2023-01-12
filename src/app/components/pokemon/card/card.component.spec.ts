@@ -27,7 +27,7 @@ describe('Pokemon Card component test', () => {
   let mockPageSubject = new Subject<number>();
   
   class MockPokemon {
-    getAll() {
+    getPagedPokemon() {
       return of(transformedPokemon);
     };
     get getPageChangeEvent$() {

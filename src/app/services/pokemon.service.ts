@@ -29,13 +29,14 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
+  // get a single pokemon
   get(name: string) {
     return this.http.get<PokemonDataType>(this.baseURL + name).pipe(
       map((pokemon) => pokemonTransformer(pokemon)),
       catchError(this.handleError),
     );
   }
-
+  // get list of pokemon
   getPokemonList() {
     const offset: number = (this.page - 1) * this.perPage;
     return this.http.get<PokemonList>(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${this.perPage}`).pipe(
@@ -43,8 +44,8 @@ export class PokemonService {
       map((pokemonList) => pokemonList.results),
     );
   }
-
-  getAll() {
+  // get additional data for pokemon
+  getPagedPokemon() {
     return this.getPokemonList().pipe(
       mergeMap((pokemonList) => forkJoin(pokemonList.map((pokemon) => this.get(pokemon.name)))),
     );
