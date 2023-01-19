@@ -1,35 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PokemonService } from '../../../services/pokemon.service';
-import { PokemonDataType, PokemonType } from 'src/types/pokemon';
 
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.css'],
 })
+export class PokemonCardComponent {
+  constructor(private pokemonService: PokemonService) {}
 
-export class PokemonCardComponent implements OnInit {
-
-  constructor(private pokemonService: PokemonService){}
-
-  pokemon:PokemonType[] = [{
-    id: 1,
-    name: "",
-    height: 0,
-    weight: 0,
-    image: "",
-    stats: [],
-    types: [],
-  }]
-
-  ngOnInit() {
-    this.getPagedPokemon()
-    this.pokemonService.getPageChangeEvent$.subscribe(event => this.getPagedPokemon());
-  }
-  getPagedPokemon() {
-    this.pokemonService.getPagedPokemon().subscribe(data => {
-      this.pokemon = data;
-      // console.log(this.pokemon)
-    })
-  }
+  pagedPokemon$? = this.pokemonService.getPagedPokemon$;
 }

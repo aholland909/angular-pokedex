@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed, getTestBed, inject, tick, fakeAsync } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Observable, of, Subject } from 'rxjs';
-import { PokemonType } from 'src/types/pokemon';
 import { PokemonCardComponent } from './card.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { CommonModule } from '@angular/common';
@@ -24,16 +22,9 @@ const transformedPokemon = [
 describe('Pokemon Card component test', () => {
   let component: PokemonCardComponent;
   let fixture: ComponentFixture<PokemonCardComponent>;
-  let de: DebugElement;
-  let mockPageSubject = new Subject<number>();
   
   class MockPokemon {
-    getPagedPokemon() {
-      return of(transformedPokemon);
-    };
-    get getPageChangeEvent$() {
-      return mockPageSubject.asObservable()
-    }
+    getPagedPokemon$ = of(transformedPokemon)
   }
 
   beforeEach(() => {

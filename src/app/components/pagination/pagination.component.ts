@@ -9,7 +9,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class PokemonPaginationComponent implements OnInit {
   constructor(private pokemonService: PokemonService) {}
 
-  page: number = 1;
+  page: number = this.pokemonService.page;
   nextPageURL: string | null = null;
   previousPageURL: string | null = null;
 

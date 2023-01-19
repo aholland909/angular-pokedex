@@ -1,4 +1,4 @@
-<div class="pokemon-card-container">
+<div class="pokemon-card-container" *ngIf="pagedPokemon$ | async as pokemon">
   <div *ngFor="let p of pokemon">
     <div class="pokemon-card">
       <p class="pokemon-title">{{ p.name }}</p>

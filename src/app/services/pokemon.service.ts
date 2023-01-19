@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { map, catchError, mergeMap, tap } from 'rxjs/operators';
-import { forkJoin, Subject, throwError } from 'rxjs';
+import { map, catchError, mergeMap, tap, shareReplay, share, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, forkJoin, Observable, ReplaySubject, Subject, throwError } from 'rxjs';
 import { PokemonType, PokemonDataType, PokemonList, PokemonListResult } from 'src/types/pokemon';
 
 const pokemonTransformer = (pokemon: PokemonDataType) => {
@@ -24,9 +24,10 @@ export class PokemonService {
   page: number = 1;
   perPage: number = 18;
 
-  private pageSubject = new Subject<number>();
-  private nextPageURLSubject = new Subject<string | null>();
-  private previousPageURLSubject = new Subject<string | null>();
+  private pageSubject = new ReplaySubject<number>();
+  private nextPageURLSubject = new ReplaySubject<string | null>();
+  private previousPageURLSubject = new ReplaySubject<string | null>();
+  public pokemonListData$ = new BehaviorSubject<void>(undefined);
 
   constructor(private http: HttpClient) {}
 
@@ -37,7 +38,7 @@ export class PokemonService {
       catchError(this.handleError),
     );
   }
-  // get list of pokemon
+  // get list of pokemon old function
   getPokemonList() {
     const offset: number = (this.page - 1) * this.perPage;
     return this.http.get<PokemonList>(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${this.perPage}`).pipe(
@@ -45,21 +46,33 @@ export class PokemonService {
       map((pokemonList) => pokemonList.results),
     );
   }
-  // get additional data for pokemon
-  getPagedPokemon() {
-    return this.getPokemonList().pipe(
-      mergeMap((pokemonList) => forkJoin(pokemonList.map((pokemon) => this.get(pokemon.name)))),
-    );
-  }
+
+  // cache a list of pokemon
+  public getCachedPokemonList$ = this.pokemonListData$.pipe(
+    mergeMap(() => this.getPokemonList()),
+    shareReplay(1),
+  );
+
+  // cached get additional data for pokemon
+  public getPagedPokemon$ = this.pokemonListData$.pipe(
+    mergeMap(() =>
+      this.getPokemonList().pipe(
+        mergeMap((pokemonList) => forkJoin(pokemonList.map((pokemon) => this.get(pokemon.name)))),
+      ),
+    ),
+    shareReplay(1),
+  );
 
   updatePaginationSubject = (previous: string, next: string) => {
     this.nextPageURLSubject.next(next);
     this.previousPageURLSubject.next(previous);
-  }
+  };
 
+  // pageChanged event
   pageChange(newPageNumber: number) {
     this.page += newPageNumber;
     this.pageSubject.next(this.page);
+    this.pokemonListData$.next();
     return this.page;
   }
 
