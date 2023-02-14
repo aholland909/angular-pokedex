@@ -2,11 +2,12 @@
   width: 250px;
 }
 
-.search-result-group{
-  margin: 0px;
+.search-result-group {
   position: absolute;
   background: white;
-
+  max-height: 600px;
+  overflow-y: scroll;
+  width: 258px;
 }
 
 .search-result-group > ul {
