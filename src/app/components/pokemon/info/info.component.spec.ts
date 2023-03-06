@@ -11,42 +11,40 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { HttpLoaderFactory } from '../../../app.module';
 import { HttpClient } from '@angular/common/http';
 
-const transformedPokemon = [
-  {
-    name: 'bulbasaur',
-    height: 10,
-    weight: 15,
-    image: 'www.bulbasaur.image',
-    stats: [
-      {
-        base_stat: 45,
-        effort: 0,
-        stat: {
-          name: 'hp',
-          url: 'https://pokeapi.co/api/v2/stat/1/',
-        },
+const transformedPokemon = {
+  id: 1,
+  name: 'bulbasaur',
+  height: 10,
+  weight: 15,
+  image: 'www.bulbasaur.image',
+  stats: [
+    {
+      base_stat: 45,
+      effort: 0,
+      stat: {
+        name: 'hp',
+        url: 'https://pokeapi.co/api/v2/stat/1/',
       },
-      {
-        base_stat: 49,
-        effort: 0,
-        stat: {
-          name: 'attack',
-          url: 'https://pokeapi.co/api/v2/stat/2/',
-        },
+    },
+    {
+      base_stat: 49,
+      effort: 0,
+      stat: {
+        name: 'attack',
+        url: 'https://pokeapi.co/api/v2/stat/2/',
       },
-    ],
-    types: [
-      {
-        slot: 1,
-        type: {
-          name: 'grass',
-          url: 'https://pokeapi.co/api/v2/type/12/',
-        },
+    },
+  ],
+  types: [
+    {
+      slot: 1,
+      type: {
+        name: 'grass',
+        url: 'https://pokeapi.co/api/v2/type/12/',
       },
-    ],
-  },
-];
-
+    },
+  ],
+};
 describe('Pokemon Info page', () => {
   let component: InfoComponent;
   let fixture: ComponentFixture<InfoComponent>;

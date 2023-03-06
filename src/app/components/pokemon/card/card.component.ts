@@ -13,6 +13,7 @@ export class PokemonCardComponent implements OnInit {
   constructor(private pokemonService: PokemonService){}
 
   pokemon:PokemonType[] = [{
+    id: 1,
     name: "",
     height: 0,
     weight: 0,
@@ -26,7 +27,7 @@ export class PokemonCardComponent implements OnInit {
     this.pokemonService.getPageChangeEvent$.subscribe(event => this.getPagedPokemon());
   }
   getPagedPokemon() {
-    this.pokemonService.getAll().subscribe(data => {
+    this.pokemonService.getPagedPokemon().subscribe(data => {
       this.pokemon = data;
       // console.log(this.pokemon)
     })

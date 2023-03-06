@@ -2,9 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { PokemonService } from './pokemon.service';
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterTestingModule } from '@angular/router/testing';
 
 const mockPokemonResponse = {
+  id: 1,
   name: 'bulbasaur',
   height: 10,
   weight: 15,
@@ -19,16 +20,15 @@ const mockPokemonResponse = {
   types: [],
 };
 
-const transformedPokemon = [
-  {
-    name: 'bulbasaur',
-    height: 10,
-    weight: 15,
-    image: 'www.bulbasaur.image',
-    stats: [],
-    types: [],
-  },
-];
+const transformedPokemon = {
+  id: 1,
+  name: 'bulbasaur',
+  height: 10,
+  weight: 15,
+  image: 'www.bulbasaur.image',
+  stats: [],
+  types: [],
+};
 
 let httpTestingController: HttpTestingController;
 let service: PokemonService;

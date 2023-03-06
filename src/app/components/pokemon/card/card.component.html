@@ -2,7 +2,15 @@
   <div *ngFor="let p of pokemon">
     <div class="pokemon-card">
       <p class="pokemon-title">{{ p.name }}</p>
-      <img class="pokemon-image" src="{{ p.image }}" />
+      <img
+        *ngIf="p.image"
+        class="pokemon-image"
+        ngSrc="{{ p.image }}"
+        alt="{{ p.name + ' image' }}"
+        height="200"
+        width="200"
+        priority="{{p.id === 1 ? true : false}}"
+      />
       <p id="height">{{'pokemon.height' | translate}}: {{ p.height }}</p>
       <p id="weight">{{'pokemon.weight' | translate}}: {{ p.weight }}</p>
       <button class="pokemon-button" routerLink="{{ '/pokemon/' + p.name }}">{{'pokemon.button' | translate}}</button>

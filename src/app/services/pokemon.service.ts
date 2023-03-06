@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { map, catchError, mergeMap } from 'rxjs/operators';
-import { Subject, throwError } from 'rxjs';
+import { map, catchError, mergeMap, tap } from 'rxjs/operators';
+import { forkJoin, Subject, throwError } from 'rxjs';
 import { PokemonType, PokemonDataType, PokemonList, PokemonListResult } from 'src/types/pokemon';
 
-const pokemonTransformer = (pokemon: PokemonDataType[]) => {
-  return pokemon.map((p) => {
-    return {
-      name: p.name,
-      height: p.height,
-      weight: p.weight,
-      image: p.sprites.other['official-artwork'].front_default,
-      stats: p.stats,
-      types: p.types
-    };
-  });
+const pokemonTransformer = (pokemon: PokemonDataType) => {
+  return {
+    id: pokemon.id,
+    name: pokemon.name,
+    height: pokemon.height,
+    weight: pokemon.weight,
+    image: pokemon.sprites.other['official-artwork'].front_default,
+    stats: pokemon.stats,
+    types: pokemon.types,
+  };
 };
 
 @Injectable({
@@ -31,41 +30,31 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
+  // get a single pokemon
   get(name: string) {
     return this.http.get<PokemonDataType>(this.baseURL + name).pipe(
-      map((pokemon) => pokemonTransformer([pokemon])),
+      map((pokemon) => pokemonTransformer(pokemon)),
       catchError(this.handleError),
     );
   }
-
-  getAll() {
+  // get list of pokemon
+  getPokemonList() {
     const offset: number = (this.page - 1) * this.perPage;
-    const pokemonList = this.http
-      .get<PokemonList>(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${this.perPage}`)
-      .pipe(
-        mergeMap((pokemon: PokemonList) => {
-          this.nextPageURLSubject.next(pokemon.next);
-          this.previousPageURLSubject.next(pokemon.previous)
+    return this.http.get<PokemonList>(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${this.perPage}`).pipe(
+      tap((pokemon: PokemonList) => this.updatePaginationSubject(pokemon.previous, pokemon.next)),
+      map((pokemonList) => pokemonList.results),
+    );
+  }
+  // get additional data for pokemon
+  getPagedPokemon() {
+    return this.getPokemonList().pipe(
+      mergeMap((pokemonList) => forkJoin(pokemonList.map((pokemon) => this.get(pokemon.name)))),
+    );
+  }
 
-          const pokemonData = Promise.all(
-            pokemon.results.map((pokemonLink: PokemonListResult) => {
-              return fetch(pokemonLink.url)
-                .then((response) => {
-                  return response.json();
-                })
-                .then((pokemonArray: PokemonDataType) => {
-                  return pokemonArray;
-                });
-            }),
-          ).then((values) => {
-            return pokemonTransformer(values);
-          });
-
-          return pokemonData;
-        }),
-        catchError(this.handleError),
-      );
-    return pokemonList;
+  updatePaginationSubject = (previous: string, next: string) => {
+    this.nextPageURLSubject.next(next);
+    this.previousPageURLSubject.next(previous);
   }
 
   pageChange(newPageNumber: number) {
@@ -78,11 +67,11 @@ export class PokemonService {
     return this.pageSubject.asObservable();
   }
 
-  get nextPageURLEvent$(){
+  get nextPageURLEvent$() {
     return this.nextPageURLSubject.asObservable();
   }
 
-  get previousPageURLEvent$(){
+  get previousPageURLEvent$() {
     return this.previousPageURLSubject.asObservable();
   }
 
