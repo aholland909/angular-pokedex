@@ -13,7 +13,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { QuizComponent } from './pages/quiz/quiz.component';
-
+import { NgOptimizedImage } from '@angular/common'
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgOptimizedImage,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

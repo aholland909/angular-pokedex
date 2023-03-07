@@ -11,6 +11,7 @@ import { PokemonType } from 'src/types/pokemon';
 export class InfoComponent implements OnInit {
   name: string = '';
   pokemon: PokemonType = {
+    id: 1,
     name: '',
     height: 0,
     weight: 0,
@@ -28,7 +29,7 @@ export class InfoComponent implements OnInit {
 
   getPokemonData(name: string) {
     this.pokemonService.get(name).subscribe({
-      next: (data) => (this.pokemon = data[0]),
+      next: (data) => (this.pokemon = data),
       error: (e) => this.router.navigateByUrl('/404'),
     });
   }

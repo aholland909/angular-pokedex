@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 
 const transformedPokemon = [
   {
+    id: 1,
     name: 'bulbasaur',
     height: 10,
     weight: 15,
@@ -30,7 +31,7 @@ describe('Pokemon Card component test', () => {
   let mockPageSubject = new Subject<number>();
 
   class MockPokemon {
-    getAll() {
+    getPagedPokemon() {
       return of(transformedPokemon);
     }
     get getPageChangeEvent$() {

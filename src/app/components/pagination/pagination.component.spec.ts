@@ -11,14 +11,13 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
 
-const transformedPokemon = [
-  {
-    name: 'bulbasaur',
-    height: 10,
-    weight: 15,
-    image: 'www.bulbasaur.image',
-  },
-];
+const transformedPokemon = {
+  id: 1,
+  name: 'bulbasaur',
+  height: 10,
+  weight: 15,
+  image: 'www.bulbasaur.image',
+};
 
 describe('Pokemon Card component test', () => {
   let component: PokemonPaginationComponent;
@@ -30,7 +29,7 @@ describe('Pokemon Card component test', () => {
   let mockPageNumber = 1;
 
   class MockPokemon {
-    getAll() {
+    getPagedPokemon() {
       return of(transformedPokemon);
     }
     get getPageChangeEvent$() {

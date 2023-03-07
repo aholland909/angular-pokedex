@@ -13,6 +13,7 @@ export class QuizComponent implements OnInit {
 
   pokemon: PokemonType[] = [
     {
+      id: 1,
       name: '',
       height: 0,
       weight: 0,
@@ -31,7 +32,7 @@ export class QuizComponent implements OnInit {
 
   getRandomPokemon(randomIndex: number) {
     this.pokemonService.getRandomPokemon(randomIndex.toString()).subscribe((data) => {
-      this.pokemon = data;
+      this.pokemon = [data];
       console.log(data);
     });
   }
