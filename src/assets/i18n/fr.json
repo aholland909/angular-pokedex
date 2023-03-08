@@ -13,5 +13,11 @@
   "pagination": {
     "next": "Suivant",
     "previous": "Précédent"
+  },
+  "quiz": {
+    "title": "C'est qui ce pokémon?",
+    "submit": "Soumettre",
+    "next": "Suivant",
+    "hint": "Indice"
   }
 }

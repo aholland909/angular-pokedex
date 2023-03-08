@@ -13,5 +13,11 @@
   "pagination": {
     "next": "Next",
     "previous": "Previous"
+  },
+  "quiz": {
+    "title": "Who's that pokemon?",
+    "submit": "Submit",
+    "next": "Next",
+    "hint": "Hint"
   }
 }

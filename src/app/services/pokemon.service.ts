@@ -4,18 +4,6 @@ import { map, catchError, mergeMap, tap } from 'rxjs/operators';
 import { forkJoin, Subject, throwError } from 'rxjs';
 import { PokemonType, PokemonDataType, PokemonList, PokemonListResult } from 'src/types/pokemon';
 
-const pokemonTransformer = (pokemon: PokemonDataType) => {
-  return {
-    id: pokemon.id,
-    name: pokemon.name,
-    height: pokemon.height,
-    weight: pokemon.weight,
-    image: pokemon.sprites.other['official-artwork'].front_default,
-    stats: pokemon.stats,
-    types: pokemon.types,
-  };
-};
-
 @Injectable({
   providedIn: 'root',
 })
@@ -30,10 +18,22 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
+  pokemonTransformer(pokemon: PokemonDataType) {
+    return {
+      id: pokemon.id,
+      name: pokemon.name.replace(/-/g, ' '),
+      height: pokemon.height,
+      weight: pokemon.weight,
+      image: pokemon.sprites.other['official-artwork'].front_default,
+      stats: pokemon.stats,
+      types: pokemon.types,
+    };
+  }
+
   // get a single pokemon
   get(name: string) {
     return this.http.get<PokemonDataType>(this.baseURL + name).pipe(
-      map((pokemon) => pokemonTransformer(pokemon)),
+      map((pokemon) => this.pokemonTransformer(pokemon)),
       catchError(this.handleError),
     );
   }
@@ -55,22 +55,7 @@ export class PokemonService {
   updatePaginationSubject = (previous: string, next: string) => {
     this.nextPageURLSubject.next(next);
     this.previousPageURLSubject.next(previous);
-  }
-
-  getRandomPokemon(randomIndex: string) {
-    const pokemonURL = `https://pokeapi.co/api/v2/pokemon/?offset=${randomIndex}&limit=1`;
-    return this.http.get<any>(pokemonURL).pipe(
-      mergeMap((pokemon: PokemonList) => {
-         return this.http.get(pokemon.results[0].url).pipe(
-          map((pokemon: any) => {
-            return pokemonTransformer(pokemon);
-          }),
-          catchError(this.handleError),
-        );
-      }),
-      catchError(this.handleError),
-    );
-  }
+  };
 
   pageChange(newPageNumber: number) {
     this.page += newPageNumber;

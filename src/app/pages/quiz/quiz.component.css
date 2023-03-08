@@ -1,4 +1,63 @@
-.quiz {
+.quiz-container {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #f2f2f2;
+  align-content: flex-start;
+}
+
+.pokemon-image {
+  min-height: 475px;
+}
+
+.skeleton-image {
+  min-height: 475px;
+  width: 475px;
+  border-radius: 10px;
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  overflow: hidden;
+  background-color: red;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.answer-input {
+  width: 200px;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.button-container {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  width: 214px;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 5px;
+}
+
+.button-container > button {
+  width: 50%;
+}
+
+.pokemon-answer {
+  display: grid;
+  place-items: center;
+}
+
+.pokemon-answer > a:link {
+  color: blue;
+  text-decoration: underline;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200deg 20% 70%);
+  }
+
+  100% {
+    background-color: hsl(200deg 20% 95%);
+  }
 }

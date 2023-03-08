@@ -1,7 +1,13 @@
 <div class="quiz-container">
-  <div>
-    <h1>Who's that pokemon?</h1>
-    <img class="pokemon-image" src="{{ pokemon[0].image }}" />
-    
-  </div>
+    <h1>{{"quiz.title" | translate}}</h1>
+    <img class="{{loading ? 'skeleton-image' : 'pokemon-image'}}" src="{{ pokemon[0].image }}" />
+    <input class="answer-input" [ngModel]="pokemonGuess" (ngModelChange)="pokemonGuess = $event" (keydown)="submit($event)" />
+    <div class="button-container">
+      <button (click)="hint()">{{'quiz.hint' | translate}}</button>
+      <button type="button" (click)="submit()">{{guessed ? ('quiz.next' | translate) : ('quiz.submit' | translate) }}</button>
+    </div>
+    <div *ngIf="guessed" class="pokemon-answer">
+      <h2>{{answer}}</h2>
+      <a routerLink="{{ '/pokemon/' + pokemon[0].name }}">{{'pokemon.button' | translate}}</a>
+    </div>
 </div>
