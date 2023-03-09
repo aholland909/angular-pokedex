@@ -1,6 +1,7 @@
 <div class="quiz-container">
     <h1>{{"quiz.title" | translate}}</h1>
-    <img class="{{loading ? 'skeleton-image' : 'pokemon-image'}}" src="{{ pokemon[0].image }}" />
+    <div *ngIf="loading" class="skeleton-image"></div>
+    <img *ngIf="!loading" class="pokemon-image" src="{{ pokemon[0].image }}" />
     <input class="answer-input" [ngModel]="pokemonGuess" (ngModelChange)="pokemonGuess = $event" (keydown)="submit($event)" />
     <div class="button-container">
       <button (click)="hint()">{{'quiz.hint' | translate}}</button>
