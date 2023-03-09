@@ -12,7 +12,7 @@
 
 .skeleton-image {
   height: 475px;
-  width: 80%;
+  width: 475px;
   border-radius: 10px;
   display: inline-block;
   position: relative;
@@ -65,9 +65,11 @@
 @media (max-width:600px) {
   .pokemon-image {
     height: 300px;
+    width: 300px;
   }
 
   .skeleton-image {
     height: 300px;
+    width: 300px;
   }
 }
