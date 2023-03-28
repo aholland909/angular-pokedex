@@ -32,3 +32,9 @@
   display: flex;
   flex-direction: row;
 }
+
+@media (max-width:600px) {
+  .pokemon-image {
+    width: 100%;
+  }
+}
